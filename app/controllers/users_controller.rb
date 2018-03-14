@@ -4,6 +4,12 @@ class UsersController < ApplicationController
     render :index
   end
 
+  def show
+    @user = User.find(params[:id])
+    flash[:notice] = 'User created successfully'
+    render :show
+  end
+
   def new
     render :new
   end
@@ -15,12 +21,6 @@ class UsersController < ApplicationController
       @errors << @user.errors.messages
       render :new
     end
-  end
-
-  def show
-    @user = User.find(params[:id])
-    flash[:notice] = 'User created successfully'
-    render :show
   end
 
   private
