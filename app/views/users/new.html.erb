@@ -1,7 +1,15 @@
+<% @errors.each do |error| %>
+  <ul>
+    <li>
+      error
+    </li>
+  </ul>
+<% end %>
+
 <h1>
   Create A New User
 </h1>
-<%= form_tag do %>
+<%= form_tag action: 'create' do %>
   <%= label_tag 'username' %>
   <%= text_field_tag 'username' %>
   <%= submit_tag 'Create user' %>

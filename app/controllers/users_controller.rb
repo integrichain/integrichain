@@ -7,4 +7,24 @@ class UsersController < ApplicationController
   def new
     render :new
   end
+
+  def create
+    if @user = User.create(user_params)
+      redirect_to @user
+    else
+      @error = @user.errors.messages
+      render :new
+    end
+  end
+
+  def show
+    # find that user
+  end
+
+  private
+
+  def user_params
+    params
+      .permit(:username)
+  end
 end
