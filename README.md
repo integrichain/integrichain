@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+We are using Ruby 2.5 and Rails 5.1.5
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+On first run, you will probably need to:
+Install the dependencies:
+`bundle install`
+Create the database:
+`bundle exec rails db:create`
+Run all database migrations:
+`bundle exec rails db:migrate`
