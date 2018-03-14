@@ -15,10 +15,12 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    if @document = Document.create(document_params)
+    @document = Document.create(document_params)
+    if @document.persisted?
+      flash[:notice] = 'Document created successfully'
       redirect_to @document
     else
-      @errors << @document.errors.messages
+      @errors += @document.errors.full_messages
       render :new
     end
   end
