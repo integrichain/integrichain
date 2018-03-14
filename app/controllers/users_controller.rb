@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    flash[:notice] = 'User created successfully'
     render :show
   end
 
@@ -15,10 +14,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @user = User.create(user_params)
+    @user = User.create(user_params)
+    if @user.persisted?
+      flash[:notice] = 'User created successfully'
       redirect_to @user
     else
-      @errors << @user.errors.messages
+      @errors += @user.errors.full_messages
       render :new
     end
   end
