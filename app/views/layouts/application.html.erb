@@ -9,6 +9,15 @@
   </head>
 
   <body>
+    <%= flash[:notice] %>
+    <% @errors.each do |error| %>
+      <ul>
+        <li>
+          error
+        </li>
+      </ul>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

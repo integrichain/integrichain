@@ -12,13 +12,15 @@ class UsersController < ApplicationController
     if @user = User.create(user_params)
       redirect_to @user
     else
-      @error = @user.errors.messages
+      @errors << @user.errors.messages
       render :new
     end
   end
 
   def show
-    # find that user
+    @user = User.find(params[:id])
+    flash[:notice] = 'User created successfully'
+    render :show
   end
 
   private
