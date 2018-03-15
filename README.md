@@ -12,7 +12,7 @@ On first run, you will probably need to:
 `bundle exec rails db:migrate`
 
 ### Run the server
-`bundle exec rails s`
+`./run`
 
 ### Set up the dApp
 ```
