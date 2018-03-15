@@ -4,21 +4,24 @@ class UsersController < ApplicationController
     render :index
   end
 
+  def show
+    @user = User.find(params[:id])
+    render :show
+  end
+
   def new
     render :new
   end
 
   def create
-    if @user = User.create(user_params)
+    @user = User.create(user_params)
+    if @user.persisted?
+      flash[:notice] = 'User created successfully'
       redirect_to @user
     else
-      @error = @user.errors.messages
+      @errors += @user.errors.full_messages
       render :new
     end
-  end
-
-  def show
-    # find that user
   end
 
   private
