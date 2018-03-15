@@ -1,0 +1,2 @@
+#!/bin/bash
+cp dapp/build/contracts/* public/contracts
