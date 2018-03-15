@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.5'
 # Use bootstrap
 gem 'bootstrap', '~> 4.0.0'
 
+#Authentication
+gem 'clearance'
+
 gem 'jquery-rails'
 
 group :development, :test do
