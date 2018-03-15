@@ -25,3 +25,5 @@
 .byebug_history
 
 vendor/bundle
+
+dapp/node_modules

@@ -12,7 +12,15 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require web3.min
+//= require truffle-contract
+//
+//= require dapp
+//
+//= require application
+//= require users
+//= require home
+//= require documents
