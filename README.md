@@ -11,6 +11,9 @@ On first run, you will probably need to:
 ### Run all database migrations:
 `bundle exec rails db:migrate`
 
+### Run the server
+`bundle exec rails s`
+
 ### Set up the dApp
 ```
 cd dapp
@@ -19,19 +22,26 @@ cd dapp
 truffle compile
 ```
 
-### Run ganache
+#### Run ganache
 Start up your local ethereum blockchain by starting Ganache -> http://truffleframework.com/ganache/
 
-### Migrate the compiled contracts to the running blockchain
+#### Migrate the compiled contracts to the running blockchain
 ```
 truffle migrate
 ```
 
-## Getting metamask and ganache on the same level
-```
-restart ganache, reset your metamask account, and always use the FIRST account in metamask.
+#### Metamask
+Copy-paste the mneumonic from ganache to set up a metamask account
+
+## Starting the dapp from a fresh state!
+
+Always use the FIRST account in metamask.
 (with the same address as the first account in ganache)
-```
+
+1. Restart ganache
+2. Run `truffle migrate`
+3. In Metamask: go to setttings > Reset Account
+4. In Metamask: refresh your connection to the ganache network by clicking on the network URL again in the network selection dropdown.
 
 ## After pulling new rails changes
 After pulling new changes down, you should always run all pending migrations
