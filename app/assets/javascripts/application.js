@@ -18,7 +18,7 @@
 //= require web3.min
 //= require truffle-contract
 //
-//= require app
+//= require dapp
 //
 //= require application
 //= require users
