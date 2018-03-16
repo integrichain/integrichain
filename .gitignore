@@ -27,3 +27,4 @@
 vendor/bundle
 
 dapp/node_modules
+dapp/build/contracts
