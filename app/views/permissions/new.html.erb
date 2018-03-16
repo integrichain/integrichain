@@ -1,0 +1,28 @@
+<h1>
+  Create a new Permission
+</h1>
+
+<%= form_tag action: 'create' do %>
+  <div>
+  <h2> User </h2>
+  <% @users.each do |user| %>
+    <%= radio_button :permission, :user_id, user.id %> 
+    <%= label :user_id, user.username %>
+  <% end %>
+  </div>
+  
+  <div>
+  <h2> Document </h2>
+  <% @documents.each do |document| %>
+    <%= radio_button :permission, :document_id, document.id %> 
+    <%= label :document, document.title %>
+  <% end %>
+  </div>
+  
+    <%= radio_button :permission, :ability, 'READ' %> 
+    <%= label :document, 'READ' %>
+    <%= radio_button :permission, :ability, 'WRITE' %> 
+    <%= label :document, 'WRITE' %>
+  
+  <%= submit_tag 'Add Permission' %>
+<% end %>
