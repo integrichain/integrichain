@@ -7,7 +7,6 @@ import "../contracts/HashStorage.sol";
 contract TestHashStorage {
   HashStorage hashStorage = HashStorage(DeployedAddresses.HashStorage());
 
-
   function testStoresAndRetrievesHash() public {
     // some SHA3-224 hash
     uint256 originalHash = uint256(0x4918224b25f43bfa8651156fb47915a3544cc5bbdf59eb72e89bbc36);
