@@ -18,6 +18,12 @@ class PermissionsController < ApplicationController
     end
   end
 
+  def show
+    @permission = Permission.find(params[:id])
+    flash[:notice] = 'Permission created successfully'
+    render :show
+  end
+
   private
 
   def permission_params
