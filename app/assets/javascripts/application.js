@@ -24,3 +24,4 @@
 //= require users
 //= require home
 //= require documents
+//= require activestorage

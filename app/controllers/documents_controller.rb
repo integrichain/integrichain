@@ -11,11 +11,14 @@ class DocumentsController < ApplicationController
   end
 
   def new
+    @document = Document.new
     render :new
   end
 
   def create
-    @document = Document.create(document_params)
+    byebug
+    @document = Document.create!(title: params[:document][:title])
+    @document.doc.attach(params[:document][:doc])
     if @document.persisted?
       flash[:notice] = 'Document created successfully'
       redirect_to @document
@@ -23,12 +26,5 @@ class DocumentsController < ApplicationController
       @errors += @document.errors.full_messages
       render :new
     end
-  end
-
-  private
-
-  def document_params
-    params
-      .permit(:title)
   end
 end
