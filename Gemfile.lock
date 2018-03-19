@@ -47,6 +47,7 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (8.1.0.1)
       execjs
+    bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
@@ -63,8 +64,14 @@ GEM
       xpath (>= 2.0, < 4.0)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    clearance (1.16.1)
+      bcrypt
+      email_validator (~> 1.4)
+      rails (>= 3.1)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    email_validator (1.6.0)
+      activemodel
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.23)
@@ -190,6 +197,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0)
   byebug
   capybara (~> 2.13)
+  clearance
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
