@@ -1,8 +1,9 @@
 <h1>
   Create A New Document
 </h1>
-<%= form_tag action: 'create' do %>
-  <%= label_tag 'title' %>
-  <%= text_field_tag 'title' %>
-  <%= submit_tag 'Create document' %>
+<%= form_with model: @document, url: {action: "create"}, local: true  do |form| %>
+  <%= form.text_field :title %><br><br>
+  <%= form.file_field :doc %><br>
+  <%= form.submit "Create" %>
 <% end %>
+
