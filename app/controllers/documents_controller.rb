@@ -16,15 +16,28 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    byebug
-    @document = Document.create!(title: params[:document][:title])
-    @document.doc.attach(params[:document][:doc])
-    if @document.persisted?
-      flash[:notice] = 'Document created successfully'
-      redirect_to @document
+    begin
+      Document.transaction do
+        begin
+          @document = Document.create!(params.require(:document).permit(:title))
+        rescue ActiveRecord::RecordInvalid => e # Validations failed
+          @errors << e.message
+          raise ActiveRecord::Rollback
+        end
+
+        begin
+          @document.doc.attach(params[:document][:doc])
+        rescue ActiveRecord::RecordNotSaved => e
+          @errors << "Failed to save attachment"
+          raise ActiveRecord::Rollback
+        end
+      end
+    end
+
+    if @errors.empty?
+      redirect_to @document, flash: { notice: 'Document created successfully' }
     else
-      @errors += @document.errors.full_messages
-      render :new
+      redirect_to new_document_url, flash: {error: @errors.join("\n") }
     end
   end
 end
