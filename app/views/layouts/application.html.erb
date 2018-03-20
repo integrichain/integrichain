@@ -50,22 +50,16 @@
     </div>
 
     <main role="main" class="container">
-    <% if flash[:notice].present? %>
-      <div class="alert alert-success" role="alert">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-    <% if flash[:error].present? %>
-      <div class="alert alert-danger" role="alert">
-        <%= flash[:error] %>
-      </div>
-    <% end %>
-      <% @errors.each do |error| %>
-        <div class="alert alert-danger" role="alert">
-          <%= error %>
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success" role="alert">
+          <%= flash[:notice] %>
         </div>
       <% end %>
-
+      <% if flash[:error].present? %>
+        <div class="alert alert-danger" role="alert">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
   </body>

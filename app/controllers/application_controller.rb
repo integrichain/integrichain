@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def initialize_errors
     @errors = []
   end
+
+  def process_errors(errors)
+    errors.join('\n')
+  end
 end
