@@ -6,8 +6,7 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
-    flash[:notice] = 'Document created successfully'
-    render :show
+    render :show, flash: { notice: 'Document created successfully' }
   end
 
   def new
@@ -37,7 +36,7 @@ class DocumentsController < ApplicationController
     if @errors.empty?
       redirect_to @document, flash: { notice: 'Document created successfully' }
     else
-      redirect_to new_document_url, flash: {error: @errors.join("\n") }
+      redirect_to new_document_url, flash: {error: process_errors(@errors) }
     end
   end
 end
