@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index'
   get '/users/:id', to: 'users#show', as: 'user'
+  get '/permissions/new/:id', to: 'permissions#new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

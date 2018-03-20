@@ -7,18 +7,10 @@
   <h2> User </h2>
   <% @users.each do |user| %>
     <%= radio_button :permission, :user_id, user.id %> 
-    <%= label :user_id, user.username %>
+    <%= label :user_id, user.email %>
   <% end %>
   </div>
-  
-  <div>
-  <h2> Document </h2>
-  <% @documents.each do |document| %>
-    <%= radio_button :permission, :document_id, document.id %> 
-    <%= label :document, document.title %>
-  <% end %>
-  </div>
-  
+  <%= hidden_field :permission, :document_id, :value => @doc_id %> 
     <%= radio_button :permission, :ability, 'READ' %> 
     <%= label :document, 'READ' %>
     <%= radio_button :permission, :ability, 'WRITE' %> 

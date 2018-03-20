@@ -1,13 +1,12 @@
 class PermissionsController < ApplicationController
   def new
     @users = User.all
-    @documents = Document.all
+    @doc_id = params[:id]
     render :new
   end
     
   def create
     @permission = Permission.create(permission_params)
-    puts permission_params 
     if @permission.persisted?
       redirect_to @permission
     else
@@ -28,6 +27,6 @@ class PermissionsController < ApplicationController
 
   def permission_params
     params[:permission]
-      .permit(:user_id, :document_id)
+        .permit(:user_id, :document_id)
   end
 end
