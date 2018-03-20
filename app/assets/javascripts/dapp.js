@@ -4,7 +4,7 @@ App = {
 
   init: function() {
     // Load pets.
-    $.getJSON('pets.json', function(data) {
+    $.getJSON('/pets.json', function(data) {
       var petsRow = $('#petsRow');
       var petTemplate = $('#petTemplate');
 
@@ -37,7 +37,7 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('contracts/Adoption.json', function(data) {
+    $.getJSON('/contracts/Adoption.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract
       var AdoptionArtifact = data;
       App.contracts.Adoption = TruffleContract(AdoptionArtifact);
