@@ -42,7 +42,6 @@
             </li>
           <% else %>
             <li class="nav-item active">
-              <
               <%= link_to 'Sign in', sign_in_path, class: 'btn btn-primary' %>
             </li>
           <% end %>
@@ -50,12 +49,6 @@
         </div>
       </div>
     </nav>
-
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-      <% end %>
-    </div>
 
     <main role="main" class="container">
       <% if flash[:notice].present? %>
