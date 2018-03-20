@@ -1,0 +1,18 @@
+<div class='text-center user-new-wrapper'>
+  <%= form_for @user, html: { class: 'form-signin' } do |form| %>
+    <img class="mb-4 owl-face-icon" src="/owl-face.jpeg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+    <%= form.label :email, "Email address", class: "sr-only" %>
+    <%= form.email_field :email, class: "form-control", id: 'inputEmail', placeholder: "Email address" %>
+
+    <%= form.label :password, "Password", class: "sr-only" %>
+    <%= form.password_field :password, class: "form-control", id: 'inputPassword', placeholder: "Password" %>
+
+    <%= form.submit class: "btn btn-lg btn-primary btn-block" %>
+
+    <div class="other-links">
+      <%= link_to t(".sign_in"), sign_in_path %>
+    </div>
+  <% end %>
+</div>
