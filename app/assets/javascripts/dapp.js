@@ -56,7 +56,6 @@ App = {
 
       // Set the provider for our contract
       App.contracts.HashStorage.setProvider(App.web3Provider);
-      App.storeHash("0x4918224b25f43bfa8651156fb47915a3544cc5bbdf59eb72e89bbc36");
 
       return
     });
@@ -80,23 +79,51 @@ App = {
       App.contracts.HashStorage.deployed().then(function(instance) {
         hashStorageInstance = instance;
 
-        // Execute adopt as a transaction by sending account
         // A transaction will burn gas
-        // return adoptionInstance.adopt(petId, {from: account});
-        return hashStorageInstance.addHash(hash)
+        return hashStorageInstance.addHash(hash) // store the hash in the HashStorage contract
       }).then(function(result) {
         console.log('result: ' + JSON.stringify(result));
 
+        // The contract returns the index where the hash is stored by emitting a HashIndexReturned event.
+        // The event can be accessed in the contract's logs
+        // Here, we find the storage index in the logs
         for(i = 0; i < result.logs.length; i++) {
           if (result.logs[i].event == "HashIndexReturned") {
-            var hashIndex = result.logs[i].args.index.c[0];
-            console.log('returned index: ' +hashIndex);
+            var hashIndex = JSON.stringify(result.logs[i].args.index)
+            console.log('returned index: ' + hashIndex);
           }
         }
+      }).catch(function(err) {
+        console.log(err.message);
+      });
+    });
+  },
 
-        // var retrievedHash = hashStorageInstance.getHashByIndex(result, { from: account })
-        // console.log("retrievedHash: " + retrievedHash);
-        return
+  retrieveHash: function(hashIndex) {
+    var hash = parseInt(hash);
+
+    var hashStorageInstance;
+
+    // Grab any ethereum accounts associated with the current user
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+          console.log(error);
+        }
+
+      var account = accounts[0]; // use the first account
+
+      App.contracts.HashStorage.deployed().then(function(instance) {
+        hashStorageInstance = instance;
+
+        return hashStorageInstance.getHashes.call(); // grab all stored hashes from the contract
+      }).then(function(result) {
+        console.log('hashes retrieved: ' + result);
+        var retrievedHash = JSON.stringify(result[hashIndex]) // grab the requested hash from the specified index
+        console.log('hash at index ' + hashIndex + ': ' + retrievedHash)
+
+        // send that shit to the server
+
+        return result[hashIndex];
       }).catch(function(err) {
         console.log(err.message);
       });
