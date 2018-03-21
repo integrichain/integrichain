@@ -1,9 +1,23 @@
-<h1>
+<h1 class="d-inline-block">
   Documents
 </h1>
-<a class="btn btn-primary" href="/documents/new" role="button">New</a>
-<ul>
-  <% @documents.each do |document| %>
-      <li> <a href="/documents/<%= document.id %>"> <%= document.title %> </a> </li>
+<a class="btn btn-primary float-right mt-2" href="/documents/new" role="button">New Document</a>
+<table class="table table-striped table-hover">
+  <% @documents.each do |document|  %>
+    <tr>
+      <td class=""> <%= document.title %> </td>
+      <td>
+        <% if Permission.exists?(document_id: document.id, user_id: current_user.id, ability: 'WRITE') %>
+          <button class='btn btn-info float-right'> Change </button>
+        <% else %>
+          <button class='btn btn-info float-right' disabled> Change </button>
+        <% end %>
+        <% if Permission.exists?(document_id: document.id, user_id: current_user.id, ability: 'READ') %>
+          <a class='btn btn-info float-right mr-2' href='/documents/<%= document.id %>'> View </a>
+        <% else %>
+          <a class='btn btn-info float-right mr-2' disabled> View </a>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
-</ul>
+</table>
