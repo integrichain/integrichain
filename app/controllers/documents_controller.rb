@@ -27,7 +27,22 @@ class DocumentsController < ApplicationController
         begin
           @document.doc.attach(params[:document][:doc])
         rescue ActiveRecord::RecordNotSaved => e
-          @errors << "Failed to save attachment"
+          @errors << 'Failed to save attachment'
+          raise ActiveRecord::Rollback
+        end
+
+        begin
+        	@permission = Permission.create(user_id: current_user.id, document_id: @document.id, ability: 'READ')
+        rescue ActiveRecord::RecordNotSaved => e
+        	@errors << 'Failed to save read permission'
+          raise ActiveRecord::Rollback
+        end
+
+        begin
+        	@user = current_user
+        	@permission = Permission.create(user_id: current_user.id, document_id: @document.id, ability: 'WRITE')
+        rescue ActiveRecord::RecordNotSaved => e
+        	@errors << 'Failed to save write permission'
           raise ActiveRecord::Rollback
         end
       end
