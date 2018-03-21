@@ -1,8 +1,19 @@
 <h1>
     <%= @user.email %>
 </h1>
-<ul>
+<table>
+	<tr>
+		<th> Documents </th>
+	<tr>
   <% @documents.each do |document|  %>
-    <li> <%= document.title %> </li>
+  	<tr>
+    	<td> <%= document.title %> </td>
+    	<% if Permission.exists?(document_id: document.id, user_id: @user.id, ability: 'READ') %>
+    		<td><button> View </button></td>
+    	<% end %>
+    	<% if Permission.exists?(document_id: document.id, user_id: @user.id, ability: 'WRITE') %>
+    		<td><button> Change </button></td>
+    	<% end %>
+  	</tr>
   <% end %>
-</ul>
+</table>
