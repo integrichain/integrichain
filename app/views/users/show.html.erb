@@ -2,7 +2,7 @@
     <%= @user.email %>
 </h1>
 <ul>
-  <%= @documents.each do |document|  %>
+  <% @documents.each do |document|  %>
     <li> <%= document.title %> </li>
   <% end %>
 </ul>
