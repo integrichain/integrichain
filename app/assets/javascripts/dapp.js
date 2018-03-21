@@ -49,8 +49,48 @@ App = {
 
       return App.markAdopted();
     });
+    $.getJSON('/contracts/HashStorage.json', function(data) { // initialize the HashStorage contract in JS
+      // Get the necessary contract artifact file and instantiate it with truffle-contract
+      var HashStorageArtifact = data;
+      App.contracts.HashStorage = TruffleContract(HashStorageArtifact);
+
+      // Set the provider for our contract
+      App.contracts.HashStorage.setProvider(App.web3Provider);
+      App.storeHash("0x4918224b25f43bfa8651156fb47915a3544cc5bbdf59eb72e89bbc36");
+
+      return
+    });
 
     return App.bindEvents();
+  },
+
+  storeHash: function(hash) {
+    var hash = parseInt(hash);
+
+    var hashStorageInstance;
+
+    // Grab any ethereum accounts associated with the current user
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+          console.log(error);
+        }
+
+      var account = accounts[0]; // use the first account
+
+      App.contracts.HashStorage.deployed().then(function(instance) {
+        hashStorageInstance = instance;
+
+        // Execute adopt as a transaction by sending account
+        // A transaction will burn gas
+        // return adoptionInstance.adopt(petId, {from: account});
+        return hashStorageInstance.setHash(hash)
+      }).then(function(result) { // result is a transaction object
+        console.log(JSON.stringify(result));
+        return
+      }).catch(function(err) {
+        console.log(err.message);
+      });
+    });
   },
 
   bindEvents: function() {
