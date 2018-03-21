@@ -32,16 +32,16 @@ class DocumentsController < ApplicationController
         end
 
         begin
-        	@permission = Permission.create(user_id: current_user.id, document_id: @document.id, ability: 'READ')
+          @permission = Permission.create(user_id: current_user.id, document_id: @document.id, ability: 'READ')
         rescue ActiveRecord::RecordNotSaved => e
-        	@errors << 'Failed to save read permission'
+          @errors << 'Failed to save read permission'
           raise ActiveRecord::Rollback
         end
 
         begin
-        	@permission = Permission.create(user_id: current_user.id, document_id: @document.id, ability: 'WRITE')
+          @permission = Permission.create(user_id: current_user.id, document_id: @document.id, ability: 'WRITE')
         rescue ActiveRecord::RecordNotSaved => e
-        	@errors << 'Failed to save write permission'
+          @errors << 'Failed to save write permission'
           raise ActiveRecord::Rollback
         end
       end
