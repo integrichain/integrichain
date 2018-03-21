@@ -39,7 +39,6 @@ class DocumentsController < ApplicationController
         end
 
         begin
-        	@user = current_user
         	@permission = Permission.create(user_id: current_user.id, document_id: @document.id, ability: 'WRITE')
         rescue ActiveRecord::RecordNotSaved => e
         	@errors << 'Failed to save write permission'
