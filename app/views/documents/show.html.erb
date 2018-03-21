@@ -1,4 +1,11 @@
 <h1>
   <%= @document.title %>
 </h1>
-<%= image_tag @document.doc %>
+<div class="image-container">
+  <%= image_tag @document.doc %>
+</class>
+<h2> Permissions <h2>
+  <a href="/documents/<%= @document.id  %>/permissions/new">
+  <button> Add a permission </button>
+</a>
+

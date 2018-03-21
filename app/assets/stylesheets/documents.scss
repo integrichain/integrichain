@@ -1,3 +1,11 @@
 // Place all the styles related to the documents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.image-container {
+    max-width: 300px;
+}
+
+img {
+    max-width: 100%;
+}
