@@ -2,9 +2,11 @@ pragma solidity ^0.4.17;
 
 contract HashStorage {
   uint256[] public hashes;
+  event HashIndexReturned(uint256 index);
 
   function addHash(uint256 newHash) external returns (uint256){
     hashes.push(newHash);
+    HashIndexReturned(hashes.length - 1); // emit an event containing the index that can be picked up in JS
     return hashes.length - 1; // the array index of the new hash
   }
 

@@ -83,9 +83,19 @@ App = {
         // Execute adopt as a transaction by sending account
         // A transaction will burn gas
         // return adoptionInstance.adopt(petId, {from: account});
-        return hashStorageInstance.setHash(hash)
-      }).then(function(result) { // result is a transaction object
-        console.log(JSON.stringify(result));
+        return hashStorageInstance.addHash(hash)
+      }).then(function(result) {
+        console.log('result: ' + JSON.stringify(result));
+
+        for(i = 0; i < result.logs.length; i++) {
+          if (result.logs[i].event == "HashIndexReturned") {
+            var hashIndex = result.logs[i].args.index.c[0];
+            console.log('returned index: ' +hashIndex);
+          }
+        }
+
+        // var retrievedHash = hashStorageInstance.getHashByIndex(result, { from: account })
+        // console.log("retrievedHash: " + retrievedHash);
         return
       }).catch(function(err) {
         console.log(err.message);
