@@ -7,13 +7,22 @@ import "../contracts/HashStorage.sol";
 contract TestHashStorage {
   HashStorage hashStorage = HashStorage(DeployedAddresses.HashStorage());
 
-  function testStoresAndRetrievesHash() public {
+  function testStoresHashWithAddHash() public {
     // some SHA3-224 hash
     uint256 originalHash = uint256(0x4918224b25f43bfa8651156fb47915a3544cc5bbdf59eb72e89bbc36);
 
-    hashStorage.setHash(originalHash);
-    uint256 storedHash = hashStorage.hash();
+    uint256 hashIndex = hashStorage.addHash(originalHash);
 
-    Assert.equal(originalHash, storedHash, "Expected storedHash to equal originalHash");
+    uint256 storedHash = hashStorage.getHashByIndex(hashIndex);
+
+    Assert.equal(storedHash, originalHash, "Retrieved hash should be the same as the original hash that was stored.");
+
+
+    uint256 zeroHash = 0;
+    uint256 outOfBoundsIndex = hashIndex + 1;
+
+    uint256 shouldBeZeroHash = hashStorage.getHashByIndex(outOfBoundsIndex);
+
+    Assert.equal(shouldBeZeroHash, zeroHash, "Retrieved hash should be the same as the original hash that was stored.");
   }
 }
