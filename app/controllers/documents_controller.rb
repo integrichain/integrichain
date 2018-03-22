@@ -19,6 +19,8 @@ class DocumentsController < ApplicationController
       Document.transaction do
         begin
           @document = Document.create!(params.require(:document).permit(:title))
+          Permission.create!(user_id: current_user.id, document_id: @document.id, ability: 'READ')
+          Permission.create!(user_id: current_user.id, document_id: @document.id, ability: 'WRITE')
         rescue ActiveRecord::RecordInvalid => e # Validations failed
           @errors << e.message
           raise ActiveRecord::Rollback
@@ -27,7 +29,7 @@ class DocumentsController < ApplicationController
         begin
           @document.doc.attach(params[:document][:doc])
         rescue ActiveRecord::RecordNotSaved => e
-          @errors << "Failed to save attachment"
+          @errors << 'Failed to save attachment'
           raise ActiveRecord::Rollback
         end
       end
