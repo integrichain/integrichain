@@ -18,7 +18,7 @@ class DocumentsController < ApplicationController
     begin
       Document.transaction do
         begin
-          @document = Document.create!(params.require(:document).permit(:title))
+          @document = Document.create!(params.require(:document).permit(:title, :address))
           Permission.create!(user_id: current_user.id, document_id: @document.id, ability: 'READ')
           Permission.create!(user_id: current_user.id, document_id: @document.id, ability: 'WRITE')
         rescue ActiveRecord::RecordInvalid => e # Validations failed

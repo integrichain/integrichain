@@ -1,5 +1,9 @@
 <h1>
   <%= @document.title %>
+  <button class="btn btn-primary" 
+    onclick="verifyIntegrity(&quot;<%= rails_blob_url(@document.doc) %>&quot;, <%= @document.address%>)">
+    Verify 
+  </button>
 </h1>
 <div class="image-container">
   <%= image_tag @document.doc %>
