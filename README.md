@@ -33,7 +33,7 @@ truffle migrate
 #### Metamask
 Copy-paste the mneumonic from ganache to set up a metamask account
 
-## Starting the dapp from a fresh state!
+## Every time you start the server, make sure to refresh the dApp:
 
 Always use the FIRST account in metamask.
 (with the same address as the first account in ganache)
