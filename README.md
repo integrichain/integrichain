@@ -39,7 +39,7 @@ Always use the FIRST account in metamask.
 (with the same address as the first account in ganache)
 
 1. Restart ganache
-2. Run `truffle migrate`
+2. `cd dapp && truffle migrate`
 3. In Metamask: go to setttings > Reset Account
 4. In Metamask: refresh your connection to the ganache network by clicking on the network URL again in the network selection dropdown.
 
