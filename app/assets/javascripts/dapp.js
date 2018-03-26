@@ -29,7 +29,7 @@ App = {
   },
 
   storeHash: function(hash, onCompletion) {
-    hashToSend = "0x"+hash
+    hashToSend = "0x"+hash;
 
     var hashStorageInstance;
 
@@ -64,7 +64,7 @@ App = {
     });
   },
 
-  retrieveHash: function(hashIndex) {
+  retrieveHash: function(hashIndex, onCompletion) {
     var hash = parseInt(hash);
 
     var hashStorageInstance;
@@ -87,8 +87,7 @@ App = {
         console.log('hash at index ' + hashIndex + ': ' + retrievedHash)
 
         // send that shit to the server
-
-        return result[hashIndex];
+        onCompletion(result[hashIndex]);
       }).catch(function(err) {
         console.log(err.message);
       });
