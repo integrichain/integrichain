@@ -25,3 +25,4 @@
 //= require home
 //= require documents
 //= require activestorage
+//= require sha3

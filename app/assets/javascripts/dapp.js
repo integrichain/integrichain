@@ -29,7 +29,7 @@ App = {
   },
 
   storeHash: function(hash) {
-    var hash = parseInt(hash);
+    hashToSend = "0x"+hash
 
     var hashStorageInstance;
 
@@ -45,7 +45,7 @@ App = {
         hashStorageInstance = instance;
 
         // A transaction will burn gas
-        return hashStorageInstance.addHash(hash) // store the hash in the HashStorage contract
+        return hashStorageInstance.addHash(hashToSend) // store the hash in the HashStorage contract
       }).then(function(result) {
         console.log('result: ' + JSON.stringify(result));
 
