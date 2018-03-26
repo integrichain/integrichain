@@ -40,5 +40,3 @@ function verifyIntegrity(documentAddress, hashIndex) {
     
    xhr.send();
 }    
-    
-  
