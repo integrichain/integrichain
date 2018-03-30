@@ -15,3 +15,18 @@ img {
   vertical-align: middle;
   border-top: 0;
 }
+
+.file-form {
+	display:inline-block;
+	width:100%;
+}
+
+.file-field {
+	float: left;
+	padding-top:5px;
+	margin-top: 5px;
+}
+
+.submit-file {
+	float:right;
+}
