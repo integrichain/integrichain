@@ -28,8 +28,8 @@ App = {
     });
   },
 
-  storeHash: function(hash) {
-    hashToSend = "0x"+hash
+  storeHash: function(hash, onCompletion) {
+    hashToSend = "0x"+hash;
 
     var hashStorageInstance;
 
@@ -54,8 +54,8 @@ App = {
         // Here, we find the storage index in the logs
         for(i = 0; i < result.logs.length; i++) {
           if (result.logs[i].event == "HashIndexReturned") {
-            var hashIndex = JSON.stringify(result.logs[i].args.index)
-            console.log('returned index: ' + hashIndex);
+            var hashIndex = result.logs[i].args.index;
+            onCompletion(hashIndex);
           }
         }
       }).catch(function(err) {
@@ -64,7 +64,7 @@ App = {
     });
   },
 
-  retrieveHash: function(hashIndex) {
+  retrieveHash: function(hashIndex, onCompletion) {
     var hash = parseInt(hash);
 
     var hashStorageInstance;
@@ -87,8 +87,7 @@ App = {
         console.log('hash at index ' + hashIndex + ': ' + retrievedHash)
 
         // send that shit to the server
-
-        return result[hashIndex];
+        onCompletion(result[hashIndex]);
       }).catch(function(err) {
         console.log(err.message);
       });
@@ -96,8 +95,6 @@ App = {
   }
 }
 
-$(function() {
   $(window).on('load', function() {
     App.init();
   });
-});

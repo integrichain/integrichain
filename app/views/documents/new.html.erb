@@ -1,9 +1,12 @@
 <h1>
   Create A New Document
 </h1>
-<%= form_with model: @document, url: {action: "create"}, html: { onsubmit: "hashDocAndSend()"}, local: true  do |form| %>
+<%= form_with model: @document, html: {  id: "doc-form"}, local: true  do |form| %>
   <%= form.text_field :title %><br><br>
   <%= form.file_field :doc, id: "fileInput" %><br>
-  <%= form.submit "Create" %>
+  <%= form.hidden_field :address, :id => "doc-address" %>
+  <button type="button" onclick="hashDocAndSend()" class="btn btn-primary">
+    Create 
+  </button> 
 <% end %>
 
