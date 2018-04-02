@@ -2,6 +2,7 @@ class PermissionsController < ApplicationController
   def new
     @users = User.all
     @doc_id = params[:id]
+    @document = Document.find(@doc_id)
     render :new
   end
     
