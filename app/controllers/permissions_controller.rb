@@ -9,7 +9,9 @@ class PermissionsController < ApplicationController
   def create
     @permission = Permission.create(permission_params)
     if @permission.persisted?
-      redirect_to @permission
+    	flash[:notice] = 'Permission created successfully'
+    	@document = Document.find(@permission.document_id)
+      redirect_to @document
     else
       @errors += @permission.errors.full_messages
       @users = User.all
@@ -28,6 +30,6 @@ class PermissionsController < ApplicationController
 
   def permission_params
     params[:permission]
-        .permit(:user_id, :document_id)
+        .permit(:user_id, :document_id, :ability)
   end
 end

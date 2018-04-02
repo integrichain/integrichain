@@ -1,20 +1,21 @@
-<h1>
+<h1 class="text-center mb-4">
   Permissions for <%= @document.title %>
 </h1>
 
 <%= form_tag action: 'create' do %>
-  <div>
-  <h2> User </h2>
-  <% @users.each do |user| %>
-    <%= radio_button :permission, :user_id, user.id %> 
-    <%= label :user_id, user.email %>
-  <% end %>
-  </div>
-  <%= hidden_field :permission, :document_id, :value => @doc_id %> 
-    <%= radio_button :permission, :ability, 'READ' %> 
-    <%= label :document, 'READ' %>
-    <%= radio_button :permission, :ability, 'WRITE' %> 
-    <%= label :document, 'WRITE' %>
-  
-  <%= submit_tag 'Add Permission' %>
+	<div id="user-select-group" class="input-group mb-3 mx-auto">
+		<div class="input-group-prepend">
+			<label class="input-group-text" for="userSelect1">Select User</label>
+		</div>
+		<%= select :permission, :user_id , options_for_select(@users.map {|user| [user.email, user.id]}), :class => "custom-select", :id => "userSelect1" %>
+	</div>
+	<div id="perm-radio-group" class="center">
+	  <%= hidden_field :permission, :document_id, :value => @doc_id %> 
+	    <%= radio_button :permission, :ability, 'READ', :class => "custom-radio" %> 
+	    <%= label :document, 'READ', :class => "mr-2" %>
+	    <%= radio_button :permission, :ability, 'WRITE', :class => "custom-radio" %> 
+	    <%= label :document, 'WRITE', :class => "mr-2" %>
+	  
+	  <%= submit_tag 'Add Permission', :class => "btn btn-info" %>
+	</div>
 <% end %>
