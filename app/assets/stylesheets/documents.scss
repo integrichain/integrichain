@@ -3,17 +3,35 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .image-container {
-    max-width: 300px;
+  max-width: 300px;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .table td{
   padding: 0.75rem;
   vertical-align: middle;
   border-top: 0;
+}
+
+.center {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
+#manage-perm-btn{
+  width: 180px;
+}
+
+#user-select-group{
+  width: 309px;
+}
+
+#perm-radio-group{
+  width: 274px;
 }
 
 .file-form {

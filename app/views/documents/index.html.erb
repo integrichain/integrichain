@@ -37,7 +37,7 @@
         <% if Permission.exists?(document_id: document.id, user_id: current_user.id, ability: 'READ') %>
           <a class='btn btn-info float-right mr-2' href='/documents/<%= document.id %>'> View </a>
         <% else %>
-          <a class='btn btn-info float-right mr-2' disabled> View </a>
+          <button class='btn btn-info float-right mr-2' disabled> View </button>
         <% end %>
       </td>
     </tr>
