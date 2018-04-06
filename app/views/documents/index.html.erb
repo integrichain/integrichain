@@ -12,10 +12,13 @@
       <button type="button" class="close float-right" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body">
-      <%= form_with model: @document, url: {controller: "documents", action: "create"}, html: { method: :post, onsubmit: "hashDocAndSend()"}, local: true, :class=>'file-form'  do |form| %>
+      <%= form_with model: @document, url: {controller: "documents", action: "create"}, html: { method: :post, onsubmit: "hashDocAndSend()"}, local: true, class: 'file-form', id: 'doc-form' do |form| %>
         <%= form.text_field :title, placeholder: "Document Title" %>
         <%= form.file_field :doc, id: "fileInput", :class=>'file-field'%>
-        <%= form.submit "Create", :class => 'btn btn-info submit-file' %>
+        <%= form.hidden_field :address, :id => "doc-address" %>
+        <button type="button" onclick="hashDocAndSend()" class="btn btn-primary">
+          Create 
+        </button> 
       <% end %>
     </div>
   </div>
